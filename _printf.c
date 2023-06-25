@@ -10,30 +10,38 @@ int _printf(const char *format, ...)
 	va_list args;
 
 	int count, val = 0, putval;
+	int perval = 0;
 	
 
 	va_start(args, format);
 
-	for (count = 0;format[count] != '\0'; count++)
+	if(format)
 	{
-		if (format[count] != '%')
+		for (count = 0;format[count] != '\0'; count++)
 		{
-			_putchar(format[count]);
+			if (format[count] != '%')
+			{
+				_putchar(format[count]);
+			}
+			else if (format[count + 1] == 'c')
+			{
+				_putchar(va_arg(args, int));
+				count++;
+			}
+			else if (format[count + 1] == 's')
+			{
+				putval = _puts(va_arg(args, char *));
+				val += putval - 1;
+				count++;
+			}
+			else if (format[count + 1] == '%')
+			{
+				_putchar(format[count + 1]);
+				val += perval;
+			}
+			val++;
 		}
-		else if (format[count + 1] == 'c')
-		{
-			_putchar(va_arg(args, int));
-			count++;
-		}
-		else if (format[count + 1] == 's')
-		{
-			putval = _puts(va_arg(args, char *));
-			val += putval - 1;
-			count++;
-		}
-		else if (format[count + 1] == '%')
-			_putchar(format[count + 1]);
-		val++;
 	}
+	return (-1);
 	return (val);
 }
