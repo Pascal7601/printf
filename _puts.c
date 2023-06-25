@@ -9,6 +9,9 @@ int _puts(const char *str)
 {
 	int element = 0, i;
 
+	if (str == NULL)
+		return (-1);
+
 	if (str)
 	{
 		for (i = 0; str[i] != '\0'; i++)
