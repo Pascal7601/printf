@@ -41,6 +41,7 @@ int _printf(const char *format, ...)
 			{
 				_putchar(format[count + 1]);
 				val += perval;
+				count++;
 			}
 			val++;
 		}
