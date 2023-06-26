@@ -10,23 +10,27 @@ int _printf(const char *format, ...)
 	va_list args;
 
 	int count, val = 0, putval;
-	int perval = 0, reval = 0;
+	int reval = 0;
 	
 
 	va_start(args, format);
 
-	if (format == NULL)
+	if (args == NULL)
 		return (-1);
 
-	if(format)
+	if(!format)
 	{
-		for (count = 0;format[count] != '\0'; count++)
+		return (-1);
+	}
+	for (count = 0;format[count] != '\0'; count++)
+	{
+		if (format[count] != '%')
 		{
-			if (format[count] != '%')
-			{
-				_putchar(format[count]);
-			}
-			else if (format[count + 1] == 'c')
+			_putchar(format[count]);
+		}
+		else if (format[count] == '%')
+		{
+			if (format[count + 1] == 'c')
 			{
 				_putchar(va_arg(args, int));
 				count++;
@@ -39,8 +43,7 @@ int _printf(const char *format, ...)
 			}
 			else if (format[count + 1] == '%')
 			{
-				perval = _putchar(format[count + 1]);
-				val += perval;
+				_putchar(format[count + 1]);
 				count++;
 			}
 			else if ((format[count + 1] == 'd') || (format[count + 1] == 'i'))
@@ -49,10 +52,10 @@ int _printf(const char *format, ...)
 				val += reval;
 				count++;
 			}
-			val++;
+			else
+				return (-1);
 		}
-		va_end(args);
-		return (-1);
+		val++;
 	}
 	va_end(args);
 	return (val);
