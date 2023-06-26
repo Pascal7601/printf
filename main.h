@@ -11,4 +11,5 @@
 int _printf(const char *format, ...);
 int _putchar(char f);
 int _puts(const char *str);
+int put_int(int num);
 #endif

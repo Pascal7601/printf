@@ -10,7 +10,7 @@ int _printf(const char *format, ...)
 	va_list args;
 
 	int count, val = 0, putval;
-	int perval = 0;
+	int perval = 0, reval = 0;
 	
 
 	va_start(args, format);
@@ -39,13 +39,21 @@ int _printf(const char *format, ...)
 			}
 			else if (format[count + 1] == '%')
 			{
-				_putchar(format[count + 1]);
+				perval = _putchar(format[count + 1]);
 				val += perval;
+				count++;
+			}
+			else if ((format[count + 1] == 'd') || (format[count + 1] == 'i'))
+			{
+				reval = put_int(va_arg(args, int));
+				val += reval;
 				count++;
 			}
 			val++;
 		}
+		va_end(args);
 		return (-1);
 	}
+	va_end(args);
 	return (val);
 }
