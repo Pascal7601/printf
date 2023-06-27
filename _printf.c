@@ -33,18 +33,18 @@ if (str == NULL)
 str = "(null)";
 while (*str != '\0')
 {
-putchar(*str);
+_putchar(*str);
 str++;
 count++;
 }
 break;
 case '%':
-putchar('%');
+_putchar('%');
 count++;
 break;
 default:
-putchar('%');
-putchar(specifier);
+_putchar('%');
+_putchar(specifier);
 count += 2;
 break;
 }
@@ -52,7 +52,7 @@ i++;
 }
 else
 {
-putchar(format[i]);
+_putchar(format[i]);
 count++;
 }
 }
