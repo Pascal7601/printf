@@ -5,58 +5,57 @@
  * @format: character array
  * Return: number of characters printed
  */
+
 int _printf(const char *format, ...)
 {
-	va_list args;
+va_list args;
+int i, count = 0;
+char *str;
+int x;
 
-	int count, val = 0, putval;
-	int reval = 0;
-	
+va_start(args, format);
 
-	va_start(args, format);
-
-	if (args == NULL)
-		return (-1);
-
-	if(!format)
-	{
-		return (-1);
-	}
-	for (count = 0;format[count] != '\0'; count++)
-	{
-		if (format[count] != '%')
-		{
-			_putchar(format[count]);
-		}
-		else if (format[count] == '%')
-		{
-			if (format[count + 1] == 'c')
-			{
-				_putchar(va_arg(args, int));
-				count++;
-			}
-			else if (format[count + 1] == 's')
-			{
-				putval = _puts(va_arg(args, char *));
-				val += putval - 1;
-				count++;
-			}
-			else if (format[count + 1] == '%')
-			{
-				_putchar(format[count + 1]);
-				count++;
-			}
-			else if ((format[count + 1] == 'd') || (format[count + 1] == 'i'))
-			{
-				reval = put_int(va_arg(args, int));
-				val += reval;
-				count++;
-			}
-			else
-				return (-1);
-		}
-		val++;
-	}
-	va_end(args);
-	return (val);
+for (i = 0; format[i] != '\0'; i++)
+{
+if (format[i] == '%')
+{
+char specifier = format[i + 1];
+switch (specifier)
+{
+case 'c':
+x = va_arg(args, int);
+_putchar(x);
+count++;
+break;
+case 's':
+str = va_arg(args, char *);
+if (str == NULL)
+str = "(null)";
+while (*str != '\0')
+{
+putchar(*str);
+str++;
+count++;
+}
+break;
+case '%':
+putchar('%');
+count++;
+break;
+default:
+putchar('%');
+putchar(specifier);
+count += 2;
+break;
+}
+i++;
+}
+else
+{
+putchar(format[i]);
+count++;
+}
+}
+va_end(args);
+return (count);
 }
