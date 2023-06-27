@@ -11,7 +11,6 @@ int _printf(const char *format, ...)
 va_list args;
 int i, count = 0;
 char *str;
-int x;
 
 va_start(args, format);
 
@@ -23,8 +22,7 @@ char specifier = format[i + 1];
 switch (specifier)
 {
 case 'c':
-x = va_arg(args, int);
-_putchar(x);
+_putchar(va_arg(args, int));
 count++;
 break;
 case 's':
