@@ -10,7 +10,7 @@ int _puts(const char *str)
 	int element = 0, i;
 
 	if (str == NULL)
-		return (-1);
+		str = "(null)";
 
 	if (str)
 	{
