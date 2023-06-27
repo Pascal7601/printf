@@ -5,29 +5,45 @@
  * @num: integer passed
  * Return: integer
  */
+
 int put_int(int num)
 {
-        int n, val = 0;
+	int val = 0, i, digits = 0, divisor = 1, temp;
+	int digit;
 
-        if (num < 0)
-        {
-                _putchar('-');
-                num = -num;
-        }
+    	if (num < 0)
+    	{	
+        	_putchar('-');
+        	num = -num;
+       		val++;
+    	}
 
-        if (num < 10)
-        {
-                _putchar(num + '0');
-                val++;
-                return (1);
-        }
-        else
-        {
-                n = num / 10;
-                val += put_int(n);
-                val++;
-                _putchar((num % 10) + '0');
-        }
-        return (val);
+    if (num == 0)
+    {
+        _putchar('0');
+        return 1;
+    }
+
+    temp = num;
+    while (temp > 0)
+    {
+        temp /= 10;
+        digits++;
+    }
+
+    
+    for (i = 1; i < digits; i++)
+        divisor *= 10;
+
+    while (divisor > 0)
+    {
+        digit = num / divisor;
+        _putchar(digit + '0');
+        val++;
+        num %= divisor;
+        divisor /= 10;
+    }
+
+    return val;
 }
 
