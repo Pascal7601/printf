@@ -9,7 +9,8 @@
 int _printf(const char *format, ...)
 {
 	va_list args;
-	int val = 0, count = 0, putval, reval;
+	int val = 0, count = 0, putval, reval, bin;
+	unsigned int un, octal, lhex, uhex;
 
 	va_start(args, format);
 	
@@ -46,6 +47,36 @@ int _printf(const char *format, ...)
                                 val += reval - 1;
                                 count++;
                         }
+			else if (format[count + 1] == 'b')
+			{
+				bin = binary_put(va_arg(args, int));
+				val += bin;
+				count++;
+			}
+			else if (format[count + 1] == 'u')
+			{
+				un = (va_arg(args, unsigned int));
+				val += put_unsigned(un);
+				count++;
+			}
+			else if (format[count + 1] == 'o')
+			{
+				octal = va_arg(args, unsigned int);
+				val += print_octal(octal);
+				count++;
+			}
+			else if (format[count + 1] == 'x')
+			{
+				lhex = va_arg(args, unsigned int);
+				val += lower_hex(lhex);
+				count++;
+			}
+			else if (format[count + 1] == 'X')
+			{
+				uhex = va_arg(args, unsigned int);
+				val += upper_hex(uhex);
+				count++;
+			}
                         else
                         {
 				_putchar(format[count]);
