@@ -19,7 +19,7 @@ int binary_put(long int n)
 	}
 	if (n <= 1)
 	{
-		_putchar(num + '0');
+		_putchar(n + '0');
 		return (count + 1);
 	}
 	if (n > 0)

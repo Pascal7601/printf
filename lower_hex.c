@@ -5,9 +5,9 @@
  * @num: integer passed
  * Return: integer
  */
-int lower_hex(long unsigned int num)
+int lower_hex(long int num)
 {
-	int count = 0, div;
+	long int count = 0, div;
 
 	if (num == 0)
 		return (1);
