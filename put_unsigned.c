@@ -5,9 +5,9 @@
  * @num: number passed
  * Return: integer
  */
-int put_unsigned(unsigned int num)
+int put_unsigned(long unsigned int num)
 {
-	int count;
+	int count = 0;
 
 	if (num == 0)
 	{

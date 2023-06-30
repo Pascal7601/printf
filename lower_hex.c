@@ -5,12 +5,18 @@
  * @num: integer passed
  * Return: integer
  */
-int lower_hex(unsigned int num)
+int lower_hex(long unsigned int num)
 {
 	int count = 0, div;
 
 	if (num == 0)
-		return (0);
+		return (1);
+	if (num < 0)
+	{
+		_putchar('-');
+		count++;
+		num = -num;
+	}
 
 	div = num % 16;
 

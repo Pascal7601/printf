@@ -5,13 +5,19 @@
  * @num: integer passed
  * Return: integer
  */
-int print_octal(unsigned int num)
+int print_octal(long unsigned int num)
 {
 	int count = 0;
 
 	if (num == 0)
 	{
-		return (0);
+		return (1);
+	}
+	if (num < 0)
+	{
+		_putchar('-');
+		count++;
+		num = -num;
 	}
 	else
 	{

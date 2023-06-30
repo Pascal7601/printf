@@ -5,12 +5,19 @@
  * @num: integer passed
  * Return: integer
  */
-int upper_hex(unsigned int num)
+int upper_hex(long unsigned int num)
 {
         int count = 0, div;
 
         if (num == 0)
-                return (0);
+                return (1);
+
+	if (num < 0)
+	{
+		_putchar('-');
+		count++;
+		num = -num;
+	}
 
         div = num % 16;
 
