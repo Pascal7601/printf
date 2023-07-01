@@ -33,18 +33,18 @@ int _printf(const char *format, ...)
                         else if (format[count + 1] == 's')
                         {
                                 putval = _puts(va_arg(args, char *));
-                                val += putval;
+                                val += putval - 1;
                                 count++;
                         }
                         else if (format[count + 1] == '%')
                         {
-                                _putchar('%');
+                                _putchar(format[count + 1]);
                                 count++;
                         }
                         else if ((format[count + 1] == 'd') || (format[count + 1] == 'i'))
                         {
                                 reval = put_int(va_arg(args, int));
-                                val += reval;
+                                val += reval - 1;
                                 count++;
                         }
 			else if (format[count + 1] == 'b')
