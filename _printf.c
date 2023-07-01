@@ -32,24 +32,24 @@ int _printf(const char *format, ...)
                         else if (format[count + 1] == 's')
                         {
                                 putval = _puts(va_arg(args, char *));
-                                val += putval - 1;
+                                val += putval;
                                 count++;
                         }
                         else if (format[count + 1] == '%')
                         {
-                                _putchar(format[count + 1]);
+                                _putchar('%');
                                 count++;
                         }
                         else if ((format[count + 1] == 'd') || (format[count + 1] == 'i'))
                         {
                                 reval = put_int(va_arg(args, int));
-                                val += reval - 1;
+                                val += reval;
                                 count++;
                         }
                         else
                         {
 				_putchar(format[count]);
-                                return (-1);
+                                val++;
                         }
                 }
                 else
@@ -59,6 +59,3 @@ int _printf(const char *format, ...)
         va_end(args);
         return (val);
 }
-
-
-
